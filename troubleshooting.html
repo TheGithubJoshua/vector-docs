@@ -1,0 +1,70 @@
+<h1 id="troubleshooting">Troubleshooting</h1>
+<h2 id="failure-to-install-python-package">Failure to Install Python
+Package</h2>
+<p>If you run into trouble installing Python packages, please upgrade
+your pip install as follows:</p>
+<blockquote>
+<p>On macOS and Linux:</p>
+<pre><code>pip3 install -U pip</code></pre>
+<p>On Windows:</p>
+<pre><code>python -m pip install --upgrade pip</code></pre>
+<p>Alternatively on Windows, try:</p>
+<pre><code>py -3 -m pip install --upgrade pip</code></pre>
+<p>You may also need to update Python setuptools (for instance, for
+error
+<code>AttributeError: '_NamespacePath' object has no attribute 'sort'</code>):</p>
+<pre><code>pip install --upgrade setuptools</code></pre>
+<p>After applying these updates, retry your Python package
+installation.</p>
+</blockquote>
+<h2 id="tutorial-program-does-not-run">Tutorial program does not
+run</h2>
+<p>Before running a Python program, be sure you can see Vector's eyes.
+If instead you see an image of a mobile device, the Customer Care Info
+screen, a missing Wifi icon, or something else, please complete setup of
+your Vector first and then you will be ready set up the SDK.</p>
+<p>Also, check whether Vector's IP address has changed since the last
+time you ran <code>anki_vector.configure</code>. If so, see <code
+class="interpreted-text" role="ref">moving_between_wifi</code> to set up
+the robot with the new IP address.</p>
+<h2 id="failure-to-run-anki_vector.configure">Failure to run
+anki_vector.configure</h2>
+<p>The prerequisites to run the <code>anki_vector.configure</code>
+executable submodule successfully are:</p>
+<ul>
+<li>You have successfully created an Anki account.</li>
+<li>Vector has been set up with the Vector companion app.</li>
+<li>The Vector companion app is <em>not</em> currently connected to
+Vector.</li>
+<li>Vector is connected to the same network as your computer.</li>
+<li>The <code>anki_vector</code> Python package must be installed.</li>
+<li>You can see Vector's eyes on his screen.</li>
+</ul>
+<h2 id="vector-behaves-unexpectedly">Vector behaves unexpectedly</h2>
+<p>You may need to reboot your robot when you are finished running
+programs with the pre-alpha Vector SDK.</p>
+<h2 id="cant-find-robot-name">Can't find robot name</h2>
+<p>Your Vector robot name looks like "Vector-E5S6". Find your robot name
+by placing Vector on the charger and double-clicking Vector's backpack
+button.</p>
+<h2 id="cant-find-serial-number">Can't find serial number</h2>
+<p>Your Vector's serial number looks like "00e20142". Find your robot
+serial number on the underside of Vector. Or, find the serial number
+from Vector's debug screen: double-click his backpack, move his arms up
+and down, then look for "ESN" on his screen.</p>
+<h2 id="cant-find-vectors-ip-address">Can't find Vector's IP
+address</h2>
+<p>Your Vector IP address looks like "192.168.40.134". Find the IP
+address from Vector's debug screen: double-click his backpack, move his
+arms up and down, then look for "IP" on his screen.</p>
+<h2 id="anki-developer-forums">Anki Developer Forums</h2>
+<p>Please visit the <a href="https://forums.anki.com/">Anki Developer
+Forums</a> to ask questions, find solutions and for general
+discussion.</p>
+<hr />
+<p><a
+href="https://www.anki.com/en-us/company/terms-and-conditions">Terms and
+Conditions</a> and <a
+href="https://www.anki.com/en-us/company/privacy">Privacy Policy</a></p>
+<p><a href="https://developer.anki.com">Click here to return to the Anki
+Developer website.</a></p>

@@ -1,0 +1,82 @@
+<h1 id="advanced-tips">Advanced Tips</h1>
+<h2 id="moving_between_wifi">Moving Vector between WiFi networks</h2>
+<p>When you move Vector from one WiFi network to another (using the
+Vector App), or if your Vector's IP changes, the SDK will need to
+determine Vector's new IP address. There are two ways to accomplish
+this.</p>
+<h3 id="automatic-mdns-discovery">1. Automatic: mDNS Discovery</h3>
+<p>The SDK will automatically discover your Vector, even on a new WiFi
+network, when you connect as follows:</p>
+<pre><code>import anki_vector
+
+with anki_vector.Robot(name=&quot;Vector-A1B2&quot;) as robot:
+    # The sdk will try to connect to &#39;Vector A1B2&#39;, 
+    # even if its IP address has changed. 
+    pass</code></pre>
+<p>You will need to install the <code>zeroconf</code> package to use
+this feature:</p>
+<pre><code>pip3 install --user zeroconf</code></pre>
+<h3 id="manual-update-configuration">2. Manual: Update
+Configuration</h3>
+<p>Alternatively, you can manually make changes to your SDK setup. To
+assist in this migration, the <code>anki_vector.configure</code>
+executable submodule provides a <code>-u</code> parameter to quickly
+reconnect to Vector.</p>
+<p>To update your connection, you will need to find the IP address on
+Vector's face, and the serial number of the robot you are updating. Then
+from your terminal run:</p>
+<pre><code>python3 -m anki_vector.configure -u &quot;&lt;your_new_ip&gt;&quot; -s &quot;&lt;your_robot_serial_number&gt;&quot;</code></pre>
+<h2 id="using-multiple-vectors">Using multiple Vectors</h2>
+<p>If your device is configured to use more than one robot, you can
+specify which robot you want to use by passing its serial number as a
+parameter to the Robot constructor:</p>
+<pre><code>with anki_vector.Robot(&quot;00e20142&quot;) as robot:
+  robot.anim.play_animation_trigger(&quot;GreetAfterLongTime&quot;)</code></pre>
+<p>Alternatively, you can pass a <code>--serial</code> flag on the
+command line, and <code>anki_vector.util.parse_command_args</code> will
+parse out the serial number:</p>
+<pre><code>./01_hello_world.py --serial 00e20142</code></pre>
+<h2 id="set-anki_robot_serial">Set ANKI_ROBOT_SERIAL</h2>
+<p>In order to avoid entering Vector's serial number for each program
+run, you can create environment variable <code>ANKI_ROBOT_SERIAL</code>
+and set it to Vector's serial number:</p>
+<pre><code>export ANKI_ROBOT_SERIAL=00e20100</code></pre>
+<h2 id="set-anki_robot_host-and-vector_robot_name">Set ANKI_ROBOT_HOST
+and VECTOR_ROBOT_NAME</h2>
+<p>When running the <code>anki_vector.configure</code> executable
+submodule, you must provide Vector's ip and name. To avoid typing these
+in, you can instead create environment variables ANKI_ROBOT_HOST and
+VECTOR_ROBOT_NAME. Then <code>anki_vector.configure</code> will
+automatically pick up those settings:</p>
+<pre><code>export ANKI_ROBOT_HOST=&quot;192.168.42.42&quot;
+export VECTOR_ROBOT_NAME=Vector-A1B2</code></pre>
+<h2 id="keeping-vector-still-between-sdk-scripts">Keeping Vector Still
+Between SDK Scripts</h2>
+<p>Vector can be controlled so that (like Cozmo) he will not move
+between SDK scripts. There are three options for entering this mode of
+operation:</p>
+<ul>
+<li>Control can be reserved from the command prompt:
+<code>python3 -m anki_vector.reserve_control</code> Vector will remain
+still between SDK scripts until the script/process is exited.</li>
+<li>There are OS-specific scripts (Mac/Win) in the
+<code>examples/scripts/</code> folder that can be double-clicked to more
+easily reserve behavior control. The script will open in a new window;
+closing the window or otherwise stopping the script will release control
+back to the built-in robot behaviors.</li>
+<li>A single Python file can explicitly reserve control using the
+<code>ReserveBehaviorControl</code> object. Consult the
+<code>anki_vector.connection</code> <a
+href="https://developer.anki.com/vector/docs/generated/anki_vector.connection.html">documentation</a>
+for more information.</li>
+</ul>
+<p>While normal robot behaviors are suppressed, Vector may look
+'broken'. Closing the SDK scripts, disconnecting from the robot, or
+restarting the robot will all release behavior control.</p>
+<hr />
+<p><a
+href="https://www.anki.com/en-us/company/terms-and-conditions">Terms and
+Conditions</a> and <a
+href="https://www.anki.com/en-us/company/privacy">Privacy Policy</a></p>
+<p><a href="https://developer.anki.com">Click here to return to the Anki
+Developer website.</a></p>
